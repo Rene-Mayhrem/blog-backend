@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.blog.blog_api.user.User;
+
 @Service
 public class PostService {
   @Autowired
@@ -32,5 +34,9 @@ public class PostService {
 
   public void deletePost (Long id) {
     repository.deleteById(id);
+  }
+
+  public List<Post> getPostsByUser (User user) {
+    return repository.findByUser(user);
   }
 }

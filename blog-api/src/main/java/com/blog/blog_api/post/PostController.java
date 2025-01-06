@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blog.blog_api.user.User;
+
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
@@ -43,5 +45,12 @@ public class PostController {
   @DeleteMapping("/{id}")
   public void deletePost(@PathVariable Long id) {
     service.deletePost(id);
+  }
+
+  @GetMapping("/user/{userId}")
+  public List<Post> getPostsByUser (@PathVariable Long userId) {
+    User user = new User();
+    user.setId(userId);
+    return service.getPostsByUser(user);
   }
 }
